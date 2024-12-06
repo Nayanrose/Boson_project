@@ -1,0 +1,112 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+   
+    .card {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    
+    .card-title1 {
+      color: #333;
+      font-size: 30px;
+      margin: 20px 0;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    
+    .card-text2 {
+      padding: 20px;
+      font-size: 16px;
+      color: #555;
+      line-height: 1.5;
+      margin: 20px 0;
+    }
+
+    
+    .but {
+      color: white;
+      border: none;
+      background-color: rgb(37, 180, 247);
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 10px;
+      display: inline-block;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .but:hover {
+      background-color: #0d4697;
+      color: black;
+    }
+
+ 
+    .card-body {
+      margin: 20px;
+    }
+
+   
+    h6.card-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin: 10px 0;
+    }
+  </style>
+
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title1">{{ blg.name }}</h3>
+      <div class="card-text2">
+        <h6 class="card-title">Start Date: {{ blg.start_date }}</h6>
+        <h6 class="card-title">End Date: {{ blg.end_date }}</h6>
+        <h6 class="card-title">Description: {{ blg.descrption }}</h6>
+        <p>Status: <strong>{{ blg.status }}</strong></p>
+      </div>
+
+      <div>
+        <a href="{% url 'delete' blg.pk %}" class="but">Delete Project</a>
+        <a href="{% url 'update' blg.pk %}" class="but">Edit Project</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

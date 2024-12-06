@@ -1,0 +1,87 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container text-center" style="padding: 20px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            width: 350px;
+            height: 350px;
+            padding: 20px;
+            margin-right:0;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-text {
+            background-color: #1699f1;
+            font-family: 'Arial', sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        h6 {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .but {
+            display: inline-block;
+            color: #ffffff;
+            background-color: rgb(9, 117, 218);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        .but:hover {
+            background-color: #6b81d0;
+            color: #333;
+        }
+
+        .but a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+
+    {% for i in blg %} 
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">{{ i.name }}</p>
+                <h6>{{ i.descrption|truncatewords:20 }}</h6>
+                <h6>Start Date: {{ i.start_date }}</h6>
+                <h6>End Date: {{ i.end_date }}</h6>
+                <h6>Status: <strong>{{ i.status }}</strong></h6>
+                <button class="but">
+                    <a href="{% url 'detail' i.pk %}">View Details</a>
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
